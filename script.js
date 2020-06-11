@@ -2,7 +2,7 @@ let time = null
 
 const gitFind = () => {
 
-    clearTimeout(time)
+    clearTimeout(time);
 
     time = setTimeout(() => {
         const baseURL = "https://api.github.com";
@@ -17,6 +17,7 @@ const gitFind = () => {
 
             if(data.message){
                 pageError.innerHTML = ""
+                pageUsers.innerHTML = "" 
 
                 pageError.innerHTML = '<h1 class="badge badge-pill badge-dark">Perfil não encontrado</h1>'
             }else{
@@ -29,8 +30,8 @@ const gitFind = () => {
                     html_url } = data
 
                 if(name === null){
-                    name = "Nome de usúario não especificado"
-                }
+                    name = "Nome do usuário não especificado"
+                };
 
                 const setpageUser = `<img src="${avatar_url}" class="card-img-top"/>
                                     <div class="card-body">
@@ -41,16 +42,16 @@ const gitFind = () => {
                                         <span class="badge badge-dark">Seguindo: ${following}</span>
                                         <a href="${html_url}" class="btn btn-secondary" target="_blank">Ir Para o Perfil</a>
                                     </div>`
-    
-                pageUsers.innerHTML = setpageUser     
-            }
+
+                pageUsers.innerHTML = setpageUser;   
+            };
         });
 
         fetch(`${baseURL}/users/${value}/repos`)
         .then(response => response.json())
         .then(data => {
 
-            pageRepos.innerHTML = ""
+            pageRepos.innerHTML = "";
 
             data.forEach((v) => {
                 let { 
@@ -61,11 +62,11 @@ const gitFind = () => {
 
                 if(description === null){
                     description = "Esse repositório não possui descrição"
-                }
+                };
                 
                 if(language === null){
                     language = "LInguagem utilizado não especificada"
-                }
+                };
 
                 const setPageRepos = `  <div class="repo">
                                             <h3 class="mt-0">${name}</h3>
@@ -74,10 +75,10 @@ const gitFind = () => {
                                             <a class="btn btn-outline-dark" href="${html_url}" target="_blank">Ir Para o Repositório</a>
                                         </div>`
                                         
-                pageRepos.innerHTML += setPageRepos
+                pageRepos.innerHTML += setPageRepos;
                 
-            })
-        })
+            });
+        });
 
     }, 1000);
 }
