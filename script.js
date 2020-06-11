@@ -42,6 +42,7 @@ const gitFind = () => {
                                         <span class="badge badge-dark">Seguindo: ${following}</span>
                                         <a href="${html_url}" class="btn btn-secondary" target="_blank">Ir Para o Perfil</a>
                                     </div>`
+                pageError.innerHTML = ""
 
                 pageUsers.innerHTML = setpageUser;   
             };
